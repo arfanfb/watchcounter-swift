@@ -1,24 +1,40 @@
-//
-//  ContentView.swift
-//  watchcount Watch App
-//
-//  Created by Arfan on 20/02/25.
-//
-
 import SwiftUI
 
-struct ContentView: View {
+struct CounterView: View {
+    @State private var counter: Int = 0
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Spacer()
+            
+            Text("Counter: \(counter)")
+                .font(.body)
+                .padding()
+            
+            Spacer()
+            
+            Button(action: {
+                counter = 0
+            }) {
+                Text("Reset")
+                    .font(.body)
+                    .padding()
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            
+            Spacer()
         }
-        .padding()
+        .contentShape(Rectangle())
+        .onTapGesture {
+            counter += 1
+        }
     }
 }
 
-#Preview {
-    ContentView()
+struct CounterView_Previews: PreviewProvider {
+    static var previews: some View {
+        CounterView()
+    }
 }
